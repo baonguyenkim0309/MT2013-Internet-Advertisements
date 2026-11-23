@@ -31,9 +31,9 @@ This project investigates marginal associations between all 1,554 textual indica
 | **Benjamini–Hochberg (BH)** | FDR | $q = 0.05$ | 489 | 31.47% |
 | **Bonferroni** | FWER | $\alpha = 0.05$ | 379 | 24.39% |
 
-- The discovery sets are strictly nested: $\mathcal{D}_{\text{Bonferroni}} \subset \mathcal{D}_{\text{BY}} \subset \mathcal{D}_{\text{BH}}$ ($379 < 447 < 489$).
-- Among the **447 BY discoveries**, **365** occur more frequently in advertisements ($\hat{\Delta}_j > 0$) and **82** occur more frequently in non-advertisements ($\hat{\Delta}_j < 0$).
-- The largest marginal occurrence-rate difference is observed for `X1243` (`ancurl*com`), present in **41.18%** of Ad images versus **0.64%** of Non-ad images ($\hat{\Delta} = +0.40538$, $p_{\text{BY}} = 1.55 \times 10^{-150}$).
+- The discovery sets are strictly nested: $`\mathcal{D}_{\text{Bonferroni}} \subset \mathcal{D}_{\text{BY}} \subset \mathcal{D}_{\text{BH}}`$ ($379 < 447 < 489$).
+- Among the **447 BY discoveries**, **365** occur more frequently in advertisements ($`\hat{\Delta}_j > 0`$) and **82** occur more frequently in non-advertisements ($`\hat{\Delta}_j < 0`$).
+- The largest marginal occurrence-rate difference is observed for `X1243` (`ancurl*com`), present in **41.18%** of Ad images versus **0.64%** of Non-ad images ($`\hat{\Delta} = +0.40538`$, $`p_{\text{BY}} = 1.55 \times 10^{-150}`$).
 
 ### Visual Highlights
 
