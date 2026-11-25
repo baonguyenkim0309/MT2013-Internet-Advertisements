@@ -1,7 +1,7 @@
-> source("/home/nlvkhang/Documents/BK/Giáo trình/Probability and statistics/Project/MT2013_analysis.r", encoding = "UTF-8")
-Number of observations: 3279
-Number of columns: 1560
-Number of features: 1558
+> source("MT2013_analysis.R")
+Number of observations: 3279 
+Number of columns: 1560 
+Number of features: 1558 
 
 First 5 rows (first 10 columns):
   X  X0  X1     X2 X3 X4 X5 X6 X7 X8
@@ -13,20 +13,22 @@ First 5 rows (first 10 columns):
 
 Datatype distribution:
 
-character   integer   numeric
-        1      1558         1
+character   integer   numeric 
+        1      1558         1 
 AD/NON-AD count:
 
-   ad. nonad.
-   459   2820
+   ad. nonad. 
+   459   2820 
 Anomaly check:...
 No anomalies found. Only 1, 0 and NA.
-=== T05: DATA PREPROCESSING ===
-Input rows: 3279
-Rows with missing Class: 0
-Textual indicators: 1554
-Missing textual values: 0
-Duplicate rows after the first occurrence (retained): 856
+
+=== Section 3 - Data Preprocessing ===
+Input rows: 3279 
+Rows with at least one missing value: 920 
+Rows with missing Class: 0 
+Textual indicators: 1554 
+Missing textual values: 0 
+Duplicate rows after the first occurrence (retained): 856 
 
 Variables with missing values:
  variable n_missing missing_percent
@@ -37,6 +39,8 @@ Variables with missing values:
    Class    N Percent
 1     Ad  459      14
 2 Non-ad 2820      86
+
+Table 4.1 - Geometry summary by class
  Variable  Class Valid_n Missing_pct   Mean     SD Median    IQR
    Height     Ad     386       15.90  67.44  39.16  60.00   0.00
     Width     Ad     386       15.90 323.89 164.60 460.00 342.00
@@ -46,31 +50,43 @@ Variables with missing values:
    Aratio Non-ad    1983       29.68   3.58   6.41   1.72   3.34
 
 Local by Class (0 / 1 / NA):
-
+        
 y           0    1 <NA>
   ad.     102  352    5
   nonad.  658 2152   10
 
 Feature support summary:
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
-   4.00   11.00   15.00   25.33   23.00  944.00
-SD: 47.87
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   4.00   11.00   15.00   25.33   23.00  944.00 
+SD: 47.87 
 support_groups
-     0    1-5   6-20 21-100   >100
-     0      8   1057    460     29
+     0    1-5   6-20 21-100   >100 
+     0      8   1057    460     29 
 
-Features more common in Ad / Non-ad: 469 / 1085
-Both occurrence rates < 5%: 1464
+Features more common in Ad / Non-ad: 469 / 1085 
+Both occurrence rates < 5%: 1464 
 
-T06 complete: table1 and 3 PNG figures in figures
+Section 4 complete: 3 PNG figures saved to figures 
 
-Table 1 - Multiple-Testing Comparison (level = 0.05)
+Table 5.1 - Multiple-Testing Comparison (level = 0.05)
   Procedure Error_control Discoveries
          BY           FDR         447
          BH           FDR         489
  Bonferroni          FWER         379
 
-Table 2 - Selected BY Discoveries (rates on the 0-1 scale)
+Common to all three: 379 
+BH but not BY: 42 
+BY but not Bonferroni: 68 
+Bonferroni but not BY: 0 
+
+BH-only discoveries more common in Non-ad: 31 
+Median absolute rate difference (percentage points):
+BH_only      BY 
+   1.40    2.87 
+ Feature  Ad_rate Non_ad_rate Difference     BH_p    BY_p
+    X602 0.013072    0.037234  -0.024162 0.016991 0.13467
+
+Table 5.2 - Selected BY Discoveries (rates on the 0-1 scale)
  Feature Support Ad_rate Non_ad_rate Difference        BY_p
    X1243     207 0.41176  0.00638298    0.40538 1.5489e-150
     X351     152 0.31808  0.00212766    0.31596 1.4961e-121
@@ -83,10 +99,22 @@ Table 2 - Selected BY Discoveries (rates on the 0-1 scale)
    X1344     103 0.22004  0.00070922    0.21933  1.5418e-84
    X1143      90 0.19172  0.00070922    0.19101  1.1911e-72
 
-Common to all three: 379
-BH but not BY: 42
-BY but not Bonferroni: 68
-Bonferroni but not BY: 0
+BY discoveries more common in Ad / Non-ad: 365 / 82 
+Phrase support / also containing both words: 146 / 146 
 
-Full results saved to: outputs/T07_inference_results.csv
->
+Full results saved to: outputs/T07_inference_results.csv 
+
+Table 5.3 - Sensitivity Analysis for Repeated Profiles
+ Original_records Distinct_profiles       Ad_profiles    Nonad_profiles 
+             3279              2423               386              2037 
+       Primary_BY        Profile_BY          Retained              Left 
+              447               389               386                61 
+          Entered    Top10_retained 
+                3                10 
+Primary_gap_pp Profile_gap_pp 
+         40.54          42.68 
+
+Section 6.2 - Feature Redundancy
+  Indicator_set Indicators Distinct_vectors Additional_identical_vectors
+ All indicators       1554              760                          794
+ BY discoveries        447              256                          191
